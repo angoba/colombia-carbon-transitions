@@ -63,7 +63,7 @@ colombia-carbon-transitions/
 
 Las carpetas vacías tienen `.gitkeep` para que Git conserve la estructura. Los archivos `data/raw`, `data/interim` y `data/processed` quedan fuera de Git aunque se obtengan después. `data/metadata/manifest_template.csv` es una **plantilla vacía**, no prueba de descarga. Los resultados pesados no se versionan; los informes y tablas pequeños podrán incluirse después de revisión. Las rutas, nombres y reglas precisas están en los documentos de `docs/`.
 
-No se creó `renv.lock`, `_targets.R` ni informes `.qmd`: un lock sin R y paquetes instalados no sería válido, un pipeline sin dependencias resueltas no sería funcional y los informes analíticos aún carecen de datos. Se prevén `renv` para fijar versiones, `targets` para ejecutar el flujo reproducible y Quarto para generar auditorías, figuras y manuscrito cuando el entorno lo permita. La regla será que **cada tabla, figura y cifra del artículo se regenere desde código**, sin transcripción manual.
+No se creó `renv.lock`, `_targets.R` ni informes `.qmd`: un lock sin `renv` y dependencias instaladas no sería válido, un pipeline sin dependencias resueltas no sería funcional y los informes analíticos aún carecen de datos. Se prevén `renv` para fijar versiones, `targets` para ejecutar el flujo reproducible y Quarto para generar auditorías, figuras y manuscrito al completar la instalación y validación de las dependencias. La regla será que **cada tabla, figura y cifra del artículo se regenere desde código**, sin transcripción manual.
 
 ## Croquis de las nueve fases (0–8)
 
