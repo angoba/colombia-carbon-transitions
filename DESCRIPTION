@@ -1,0 +1,10 @@
+Package: colombiacarbontransitions
+Title: Proyecto de Transiciones de Carbono en Municipios de Colombia
+Version: 0.0.0.9000
+Description: Protocolo y flujo reproducible para estudiar trayectorias municipales de emisiones de gases de efecto invernadero en Colombia.
+Type: Project
+Imports:
+    targets,
+    yaml,
+    knitr,
+    rmarkdown

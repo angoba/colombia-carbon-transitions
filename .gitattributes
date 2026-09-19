@@ -5,3 +5,4 @@
 *.yaml text eol=lf
 *.csv text eol=lf
 *.qmd text eol=lf
+renv/activate.R whitespace=-blank-at-eol

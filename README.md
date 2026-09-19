@@ -33,6 +33,9 @@ colombia-carbon-transitions/
 ├── README.md                 # brújula del proyecto y croquis de fases
 ├── .gitignore                # protege datos, secretos y resultados grandes
 ├── .gitattributes            # normaliza finales de línea de archivos de texto
+├── .Rprofile / renv.lock     # activación y versiones del entorno R
+├── DESCRIPTION              # dependencias directas del proyecto
+├── _targets.R / _quarto.yml  # flujo mínimo e informes
 ├── docs/
 │   ├── research_protocol.md  # pregunta, objetivos, alcance y puertas de avance
 │   ├── methodology.md        # reglas analíticas y decisiones que deben fijarse
@@ -53,7 +56,7 @@ colombia-carbon-transitions/
 │   ├── models/               # modelos longitudinales y tipologías
 │   ├── spatial/              # geometrías y vecindad
 │   └── figures/              # gráficos y mapas regenerables
-├── analysis/                 # informes Quarto futuros, uno por etapa analítica
+├── analysis/                 # informe técnico 00 y análisis futuros
 ├── outputs/
 │   ├── figures/              # figuras generadas
 │   ├── tables/               # tablas generadas
@@ -63,7 +66,7 @@ colombia-carbon-transitions/
 
 Las carpetas vacías tienen `.gitkeep` para que Git conserve la estructura. Los archivos `data/raw`, `data/interim` y `data/processed` quedan fuera de Git aunque se obtengan después. `data/metadata/manifest_template.csv` es una **plantilla vacía**, no prueba de descarga. Los resultados pesados no se versionan; los informes y tablas pequeños podrán incluirse después de revisión. Las rutas, nombres y reglas precisas están en los documentos de `docs/`.
 
-No se creó `renv.lock`, `_targets.R` ni informes `.qmd`: un lock sin `renv` y dependencias instaladas no sería válido, un pipeline sin dependencias resueltas no sería funcional y los informes analíticos aún carecen de datos. Se prevén `renv` para fijar versiones, `targets` para ejecutar el flujo reproducible y Quarto para generar auditorías, figuras y manuscrito al completar la instalación y validación de las dependencias. La regla será que **cada tabla, figura y cifra del artículo se regenere desde código**, sin transcripción manual.
+Ya existen `renv.lock`, `_targets.R` y `analysis/00_environment.qmd`: registran las versiones realmente instaladas y prueban el entorno sin usar datos de investigación. `renv` aísla dependencias, `targets` valida los parámetros iniciales y Quarto genera un informe técnico. Los informes analíticos se añadirán en fases posteriores. La regla será que **cada tabla, figura y cifra del artículo se regenere desde código**, sin transcripción manual.
 
 ## Croquis de las nueve fases (0–8)
 
@@ -90,6 +93,10 @@ Las cuatro fuentes núcleo propuestas son IDEAM/INGEI (emisiones), DANE VAM (act
 Cada archivo original que se incorpore en Fase 1 tendrá un registro con `source`, `official_url`, `retrieval_date`, `original_filename`, `file_size_bytes`, `sha256`, `coverage`, `geographic_level`, `time_period`, `license` y `notes`. El SHA-256 se calcula sobre los **bytes originales** y se vuelve a comprobar antes del procesamiento. El manifiesto no almacena secretos ni datos restringidos. Los originales se guardan inmutables; cualquier corrección queda en `interim` o se produce por código. Cambios de metodología o reemplazos silenciosos de archivos originan nuevos registros y decisiones.
 
 Git guardará código, textos, configuración no secreta y metadatos pequeños; no bases crudas ni productos voluminosos. El repositorio en GitHub será **privado**, con acceso del equipo según su decisión. La publicación internacional exige una historia clara: comparación municipal transferible, métodos y código verificables, visualizaciones legibles, definiciones honestas, robustez y materiales suplementarios. Se elegirá revista y licencia del código más adelante, tras revisar alcance, normas editoriales y derechos de los datos; no se promete una cantidad de citas. La visibilidad se buscará con título y resumen claros, identificadores persistentes permitidos, documentación bilingüe del manuscrito cuando corresponda y un paquete reproducible que otros investigadores puedan citar.
+
+## Cómo comprobar el entorno
+
+En RStudio, abrir el proyecto y ejecutar `renv::status()` y `targets::tar_make()` desde su raíz. El flujo inicial solo lee `config/parameters.yml` y valida las ventanas; sus salidas permanecen fuera de Git. Para el informe técnico, ejecutar `quarto render analysis/00_environment.qmd` desde una terminal que encuentre R y Quarto, o usar **Render** en RStudio. En esta máquina, ambos ejecutables funcionan por sus rutas instaladas aunque no estén en el `PATH` general.
 
 ## Estado de la Fase 0
 

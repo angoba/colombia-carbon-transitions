@@ -1,0 +1,16 @@
+---
+title: "Entorno reproducible del proyecto"
+lang: es
+format: html
+execute:
+  echo: true
+---
+
+Este informe comprueba el entorno técnico de la Fase 0. No carga datos de investigación.
+
+```{r}
+cat("R:", R.version.string, "\n")
+for (package in c("renv", "targets", "yaml", "knitr", "rmarkdown")) {
+  cat(package, as.character(packageVersion(package)), "\n")
+}
+```

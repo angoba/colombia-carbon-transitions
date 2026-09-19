@@ -54,3 +54,9 @@
 credentials*
 secrets*
 config/local*
+
+/outputs/reports/**
+!/outputs/reports/.gitkeep
+
+/.quarto/
+**/*.quarto_ipynb
