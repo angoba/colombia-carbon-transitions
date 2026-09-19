@@ -1,0 +1,9 @@
+# Parámetros propuestos; la cobertura efectiva se fijará en Fase 1.
+historical_window:
+  start_year: 1990
+  end_year: 2024
+economic_window:
+  start_year: 2011
+  end_year: 2024
+geographic_key: cod_mpio_divipola
+sha_algorithm: SHA-256

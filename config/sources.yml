@@ -1,0 +1,22 @@
+# Registro preliminar: cobertura, disponibilidad y licencias sin verificar.
+sources:
+  ideam_ingei:
+    institution: IDEAM
+    role: emisiones_y_absorciones_gei
+    expected_period: 1990-2024
+    expected_level: municipio
+    status: pendiente_auditoria
+  dane_vam:
+    institution: DANE
+    role: valor_agregado_municipal
+    expected_period: 2011-2024
+    status: pendiente_auditoria
+  dane_population:
+    institution: DANE
+    role: poblacion_municipal
+    expected_period: 1990-2024
+    status: pendiente_auditoria
+  dane_divipola_mgn:
+    institution: DANE
+    role: codigos_y_geometrias
+    status: pendiente_auditoria
