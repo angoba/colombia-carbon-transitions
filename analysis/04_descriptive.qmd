@@ -1,0 +1,109 @@
+---
+title: "Fase 4. Primer retrato de las emisiones territoriales"
+subtitle: "Colombia, 1990–2024"
+date: 2026-09-20
+format:
+  html:
+    toc: true
+    embed-resources: true
+lang: es
+execute:
+  echo: false
+  warning: false
+---
+
+Este informe reúne los primeros resultados descriptivos. Se basa en los 1.122 códigos del inventario IDEAM y en los libros DANE ya auditados. La definición de cada indicador y las tareas abiertas están en `docs/phase4_plan.md`. Los cálculos se regeneran con `R/figures/phase4_describe.R`, `R/figures/phase4_trajectories.R`, `R/features/phase4_vam.R` y `R/figures/phase4_jumps.R`.
+
+```{r}
+library(data.table)
+tab <- "../outputs/tables"
+national <- fread(file.path(tab, "phase4_national.csv"))
+sector <- fread(file.path(tab, "phase4_sector_shares.csv"))
+concentration <- fread(file.path(tab, "phase4_concentration.csv"))
+types <- fread(file.path(tab, "phase4_type_shares.csv"))
+trajectory <- fread(file.path(tab, "phase4_trajectory_summary.csv"))
+coverage <- fread(file.path(tab, "phase4_coverage.csv"))
+economy <- fread(file.path(tab, "phase4_vam_economy.csv"))
+economic_groups <- fread(file.path(tab, "phase4_economic_quintiles.csv"))
+jumps <- fread(file.path(tab, "phase4_jump_breakdown.csv"))
+sensitivity <- fread(file.path(tab, "phase4_universe_sensitivity.csv"))
+windows <- fread(file.path(tab, "phase4_window_sensitivity.csv"))
+extremes <- fread(file.path(tab, "phase4_extreme_sensitivity.csv"))
+rates <- fread(file.path(tab, "phase4_rate_sensitivity.csv"))
+fmt <- function(x, digits = 1) formatC(x, format = "f", digits = digits,
+                                       big.mark = ".", decimal.mark = ",")
+```
+
+## Serie nacional
+
+Las emisiones brutas suman `r fmt(national[year == 1990, gross_kt], 0)` kt CO₂e en 1990 y `r fmt(national[year == 2024, gross_kt], 0)` kt en 2024. Las emisiones netas incluyen las absorciones firmadas. Ambas series reproducen el consolidado nacional de IDEAM año por año. La figura muestra la magnitud de las absorciones hacia arriba para facilitar la lectura; los datos conservan su signo negativo.
+
+![](../outputs/figures/phase4_national.png)
+
+El inventario no mide por sí solo el efecto de una política. Un cambio de serie puede reunir cambios en actividad, uso del suelo, métodos de estimación o asignación territorial. Todavía no se separan esos mecanismos.
+
+## Composición sectorial
+
+La participación de energía en las emisiones **brutas** pasa de `r fmt(100 * sector[year == 1990 & sector_id == 1, gross_share])` % en 1990 a `r fmt(100 * sector[year == 2024 & sector_id == 1, gross_share])` % en 2024. La de silvicultura, uso y cambio de uso de la tierra pasa de `r fmt(100 * sector[year == 1990 & sector_id == 4, gross_share])` % a `r fmt(100 * sector[year == 2024 & sector_id == 4, gross_share])` %. Son participaciones del total de cada año; no equivalen a cambios reales de actividad económica ni a causalidad.
+
+![](../outputs/figures/phase4_sector_shares.png)
+
+Las absorciones se presentan aparte. No se mezclan con la composición de las emisiones brutas ni se aplican logaritmos a emisiones netas, que pueden ser cero o negativas.
+
+## Distribución territorial
+
+Los diez códigos con más emisiones brutas reúnen `r fmt(concentration[year == 1990, top10_gross_pct], 2)` % del total en 1990 y `r fmt(concentration[year == 2024, top10_gross_pct], 2)` % en 2024. Los cien primeros reúnen `r fmt(concentration[year == 1990, top100_gross_pct], 2)` % y `r fmt(concentration[year == 2024, top100_gross_pct], 2)` %, respectivamente. Estas cifras se calculan de nuevo cada año, así que los códigos que integran el grupo pueden cambiar.
+
+Las 18 áreas no municipalizadas y la isla, según DIVIPOLA 2025, suman `r fmt(100 * types[year == 1990 & type_divipola_2025 != "MUNICIPIO", sum(gross_share)], 2)` % de las emisiones brutas de 1990 y `r fmt(100 * types[year == 2024 & type_divipola_2025 != "MUNICIPIO", sum(gross_share)], 2)` % de las de 2024. Esa clasificación no describe necesariamente la condición territorial de cada año anterior.
+
+Entre los `r fmt(trajectory[type_divipola_2025 == "MUNICIPIO", territories], 0)` códigos clasificados como municipios en 2025, `r fmt(trajectory[type_divipola_2025 == "MUNICIPIO", gross_increase], 0)` tienen un promedio bruto mayor en 2021–2024 que en 2011–2014 y `r fmt(trajectory[type_divipola_2025 == "MUNICIPIO", gross_decrease], 0)` uno menor. Se comparan dos promedios de cuatro años, no el cambio de un solo año. El listado de ejemplos toma los diez mayores aumentos y descensos **absolutos** entre municipios sin las tres marcas conocidas de revisión de límites. No son casos elegidos por su atractivo narrativo ni prueban éxito o fracaso.
+
+## Cobertura de las tasas por habitante
+
+La ventana principal de tasas comienza en 2008. En 1990, 5,69 % de las emisiones brutas pertenece a unidades sin población positiva, según el control de fase 3; si también se omiten asignaciones históricas para las que decidimos no calcular tasa, el porcentaje sin tasa admisible es `r fmt(coverage[year == 1990, gross_without_rate_pct], 2)` %. Son preguntas distintas y ambas cifras se conservan.
+
+![](../outputs/figures/phase4_coverage.png)
+
+En 2008 el porcentaje sin tasa admisible es `r fmt(coverage[year == 2008, gross_without_rate_pct], 3)` %. La tasa nacional, si se presenta, debe dividir las emisiones de unidades admisibles entre la suma de su población. No se obtiene promediando tasas municipales. Las tasas tempranas quedan acompañadas por su cobertura anual.
+
+## Actividades económicas del DANE
+
+Las hojas anuales de actividades primarias, secundarias y terciarias suman exactamente el VAM de cada hoja. Donde existe una fila en el panel IDEAM, el total coincide con el VAM incorporado en la fase 3 hasta precisión numérica. Nuevo Belén de Bajirá no tiene fila de actividades de 2011 a 2023 y Mapiripana figura únicamente en las hojas de 2011 a 2019 sin contraparte IDEAM. No se rellenan actividades faltantes con ceros.
+
+Entre los códigos que sí empatan con IDEAM, las actividades terciarias reúnen `r fmt(100 * economy[year == 2011, tertiary_share])` % del VAM nominal de 2011 y `r fmt(100 * economy[year == 2024, tertiary_share])` % del de 2024. Se trata de participaciones de valores **a precios corrientes** en cada año. Su diferencia puede reflejar precios relativos, además de producción; no se presenta como crecimiento real ni como desacoplamiento.
+
+Como cruce exploratorio dentro de 2011 y 2024, se ordenaron los municipios por participación de actividades primarias en su VAM nominal y se dividieron en cinco grupos de tamaño semejante. La mediana de la participación del sector IDEAM de uso de la tierra no sigue una escalera ascendente entre esos grupos. Esto ilustra que una actividad económica DANE no equivale directamente a un sector de emisiones IPCC. Las cifras son medianas municipales, no participaciones nacionales ni efectos estimados.
+
+```{r}
+#| results: asis
+view <- economic_groups[, .(
+  year = year,
+  group = primary_quintile,
+  municipalities = municipalities,
+  primary_pct = round(100 * median_primary_share, 1),
+  land_pct = round(100 * median_land_share, 1)
+)]
+setnames(view, c("Año", "Grupo", "Municipios", "Primarias en VAM (%)",
+                 "Uso de tierra en GEI bruto (%)"))
+knitr::kable(view, caption = "Medianas por quintil de participación primaria dentro de cada año")
+```
+
+## Saltos destacados
+
+El control de fase 3 identificó 30 saltos grandes en razón interanual de emisiones brutas. El desglose del original ubica en energía el mayor cambio sectorial absoluto de `r jumps[grepl("^1\\.", main_sector), .N]` saltos; en `r jumps[grepl("^1\\.A", main_category), .N]`, la categoría más cambiante es quema de combustibles. El archivo local `outputs/tables/phase4_jump_breakdown.csv` identifica código, año, sector y categoría para cada caso. **La causa de esos saltos sigue sin verificar**. No se corrigió ningún valor.
+
+## Trabajo pendiente
+
+## Sensibilidad inicial
+
+La comparación de 1990 y 2024 cambia poco al restringir el universo. Las emisiones brutas del inventario completo pasan de `r fmt(sensitivity[universe == "inventario" & year == 1990, gross_kt], 0)` a `r fmt(sensitivity[universe == "inventario" & year == 2024, gross_kt], 0)` kt. Entre los 1.103 códigos clasificados como municipios en 2025 pasan de `r fmt(sensitivity[universe == "municipios_2025" & year == 1990, gross_kt], 0)` a `r fmt(sensitivity[universe == "municipios_2025" & year == 2024, gross_kt], 0)` kt. Esta comparación solo comprueba la dirección y magnitud agregadas; no resuelve límites históricos.
+
+La ventana 2008–2024 tiene al menos `r fmt(windows[window == "2008-2024", min_valid_per_capita], 0)` tasas admisibles por año y un máximo de `r fmt(windows[window == "2008-2024", max_gross_without_rate_pct], 3)` % de emisiones brutas sin tasa. En 2001–2024 el máximo es `r fmt(windows[window == "2001-2024", max_gross_without_rate_pct], 3)` %. Las ventanas se fijaron por cobertura, no por la forma de los resultados.
+
+La parte de municipios cuyo promedio bruto aumenta entre los dos periodos es `r fmt(extremes[sample == "todos_municipios", increased_pct], 1)` %. Queda en `r fmt(extremes[sample == "sin_tres_marcas", increased_pct], 1)` % al quitar los tres códigos marcados por límites y en `r fmt(extremes[sample == "sin_top_1_pct_inicial", increased_pct], 1)` % al quitar el 1 % con mayor nivel bruto inicial. La lectura de dirección general no depende de esos casos, aunque las magnitudes y los mecanismos locales sí pueden hacerlo.
+
+Para 2024, la mediana municipal de emisiones brutas por habitante es `r fmt(rates[year == 2024 & min_population == 0, median_rate_t], 2)` t CO₂e. Al exigir al menos 5.000 habitantes queda en `r fmt(rates[year == 2024 & min_population == 5000, median_rate_t], 2)` t. La tasa agregada de los municipios incluidos se calcula con sumas y es `r fmt(rates[year == 2024 & min_population == 0, aggregate_rate_t], 2)` t para el universo completo de municipios. Mediana municipal y tasa agregada responden a preguntas distintas.
+
+## Trabajo pendiente
+
+Falta profundizar el cruce económico sin equiparar clasificaciones, revisar los saltos contra documentación metodológica y decidir si una geometría oficial validada permite mapas con límites fechados. Los datos actuales sostienen un retrato descriptivo, todavía no una interpretación explicativa del artículo.
