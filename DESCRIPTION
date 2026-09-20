@@ -6,5 +6,7 @@ Type: Project
 Imports:
     targets,
     yaml,
+    digest,
+    data.table,
     knitr,
     rmarkdown

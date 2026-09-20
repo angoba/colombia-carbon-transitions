@@ -1,6 +1,6 @@
 # Transiciones de carbono en municipios de Colombia
 
-**Estado:** Fase 0, infraestructura y protocolo. El proyecto aún no contiene datos ni resultados empíricos. **Lenguaje principal:** R. **Repositorio previsto:** GitHub privado.
+**Estado:** Fase 1, fuentes auditadas. Hay archivos originales locales y controles de cobertura, todavía sin panel ni resultados empíricos. **Lenguaje principal:** R. **Repositorio:** GitHub privado.
 
 ## Identidad científica
 
@@ -64,13 +64,13 @@ colombia-carbon-transitions/
 └── manuscript/               # borrador del artículo y material suplementario
 ```
 
-Las carpetas vacías tienen `.gitkeep` para que Git conserve la estructura. Los archivos `data/raw`, `data/interim` y `data/processed` quedan fuera de Git aunque se obtengan después. `data/metadata/manifest_template.csv` es una **plantilla vacía**, no prueba de descarga. Los resultados pesados no se versionan; los informes y tablas pequeños podrán incluirse después de revisión. Las rutas, nombres y reglas precisas están en los documentos de `docs/`.
+Las carpetas vacías tienen `.gitkeep` para que Git conserve la estructura. Los archivos `data/raw`, `data/interim` y `data/processed` quedan fuera de Git. `data/metadata/manifest_template.csv` es la plantilla y `data/metadata/manifest.csv` registra los archivos obtenidos en Fase 1. Los controles pequeños de auditoría se versionan, pero los originales y resultados pesados no. Las notas personales del equipo en `notes/` también quedan fuera de Git.
 
 Ya existen `renv.lock`, `_targets.R` y `analysis/00_environment.qmd`: registran las versiones realmente instaladas y prueban el entorno sin usar datos de investigación. `renv` aísla dependencias, `targets` valida los parámetros iniciales y Quarto genera un informe técnico. Los informes analíticos se añadirán en fases posteriores. La regla será que **cada tabla, figura y cifra del artículo se regenere desde código**, sin transcripción manual.
 
 ## Croquis de las nueve fases (0–8)
 
-Cada fase termina cuando su **puerta de avance** queda comprobada y registrada en `docs/decisions.md`. Los nombres y métodos son un protocolo inicial; se revisarán a partir de la auditoría de datos. **Solo la Fase 0 está autorizada ahora.**
+Cada fase termina cuando su **puerta de avance** queda comprobada y registrada en `docs/decisions.md`. Los nombres y métodos son un protocolo inicial; se revisarán a partir de la auditoría de datos. **Las Fases 0 y 1 están autorizadas. La Fase 2 no ha comenzado.**
 
 | Fase | Trabajo y entregable | Puerta de avance |
 |---|---|---|
@@ -88,7 +88,7 @@ La Fase 8 agrupa los pasos posteriores de enriquecimiento, modelamiento, síntes
 
 ## Datos y reproducibilidad
 
-Las cuatro fuentes núcleo propuestas son IDEAM/INGEI (emisiones), DANE VAM (actividad económica), DANE población y DANE DIVIPOLA/MGN (códigos y geometría). Bosque/uso del suelo, minería ANM y TerriData son candidatos posteriores, sujetos a cobertura, licencia y definición previa de variables. La ubicación de OneDrive indicada por el equipo es una pista de acceso, **no una descarga verificada ni garantía de que contenga el panel municipal completo**. Véase `docs/data_sources.md`.
+Las cuatro fuentes núcleo son IDEAM/INGEI (emisiones), DANE VAM (actividad económica), DANE población y DANE DIVIPOLA/MGN (códigos; aún faltan las geometrías). Bosque/uso del suelo, minería ANM y TerriData son candidatos posteriores. El usuario aportó un ZIP de IDEAM cuyos bytes quedaron registrados. El enlace de OneDrive identifica una carpeta y aún no permite reproducir la descarga individual. La [auditoría de Fase 1](docs/phase1_data_audit.md) explica cobertura y discrepancias entre fuentes.
 
 Cada archivo original que se incorpore en Fase 1 tendrá un registro con `source`, `official_url`, `retrieval_date`, `original_filename`, `file_size_bytes`, `sha256`, `coverage`, `geographic_level`, `time_period`, `license` y `notes`. El SHA-256 se calcula sobre los **bytes originales** y se vuelve a comprobar antes del procesamiento. El manifiesto no almacena secretos ni datos restringidos. Los originales se guardan inmutables; cualquier corrección queda en `interim` o se produce por código. Cambios de metodología o reemplazos silenciosos de archivos originan nuevos registros y decisiones.
 
@@ -98,6 +98,6 @@ Git guardará código, textos, configuración no secreta y metadatos pequeños; 
 
 En RStudio, abrir el proyecto y ejecutar `renv::status()` y `targets::tar_make()` desde su raíz. El flujo inicial solo lee `config/parameters.yml` y valida las ventanas; sus salidas permanecen fuera de Git. Para el informe técnico, ejecutar `quarto render analysis/00_environment.qmd` desde una terminal que encuentre R y Quarto, o usar **Render** en RStudio. En esta máquina, ambos ejecutables funcionan por sus rutas instaladas aunque no estén en el `PATH` general.
 
-## Estado de la Fase 0
+## Estado del proyecto
 
-Consultar `docs/decisions.md` para los controles realizados y pendientes. **No se han descargado datos, ejecutado análisis ni iniciado Fase 1.**
+La Fase 0 estableció el entorno y el repositorio privado. La Fase 1 obtuvo y auditó los archivos núcleo, con sus hashes y controles pequeños. Consultar `docs/phase1_data_audit.md` para los hallazgos y `docs/decisions.md` para decisiones y pendientes. **No se ha iniciado la Fase 2 ni se ha construido el panel.**

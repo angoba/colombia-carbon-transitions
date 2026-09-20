@@ -1,0 +1,32 @@
+SECTOR_IPCC,CONTAMINANTE,N
+1. Energía,CH4,811215
+1. Energía,CO2,783377
+1. Energía,N2O,705619
+2. Procesos industriales y uso de productos,CH4,268
+2. Procesos industriales y uso de productos,CO2,2081
+2. Procesos industriales y uso de productos,HFC-125,115458
+2. Procesos industriales y uso de productos,HFC-134a,170370
+2. Procesos industriales y uso de productos,HFC-143a,57174
+2. Procesos industriales y uso de productos,HFC-152a,74
+2. Procesos industriales y uso de productos,HFC-227ea,17979
+2. Procesos industriales y uso de productos,HFC-23,19058
+2. Procesos industriales y uso de productos,HFC-236fa,12333
+2. Procesos industriales y uso de productos,HFC-245fa,15724
+2. Procesos industriales y uso de productos,HFC-32,65023
+2. Procesos industriales y uso de productos,HFC-365mfc,15736
+2. Procesos industriales y uso de productos,HFC-4310mee,5605
+2. Procesos industriales y uso de productos,N2O,94
+2. Procesos industriales y uso de productos,PFC-14,8969
+2. Procesos industriales y uso de productos,PFC-218,6727
+2. Procesos industriales y uso de productos,R-116 / PFC-116,19058
+2. Procesos industriales y uso de productos,SF6,7455
+3. Agricultura,CH4,1075697
+3. Agricultura,CO2,65161
+3. Agricultura,N2O,1222132
+"4. Silvicultura, uso y cambio de uso de la tierra",CH4,12013
+"4. Silvicultura, uso y cambio de uso de la tierra",CO2,650470
+"4. Silvicultura, uso y cambio de uso de la tierra",CO2_ABS,424641
+"4. Silvicultura, uso y cambio de uso de la tierra",N2O,11835
+5. Residuos,CH4,954617
+5. Residuos,CO2,68103
+5. Residuos,N2O,391236

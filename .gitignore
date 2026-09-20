@@ -60,3 +60,16 @@ config/local*
 
 /.quarto/
 **/*.quarto_ipynb
+
+# Notas locales del equipo
+/notes/
+
+!data/metadata/manifest.csv
+
+!data/metadata/ideam_coverage.csv
+!data/metadata/ideam_categories.csv
+
+!data/metadata/ideam_codes.csv
+!data/metadata/ideam_early_years.csv
+
+!data/metadata/ideam_totals_check.csv

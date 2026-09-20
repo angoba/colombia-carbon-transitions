@@ -1,22 +1,30 @@
-# Preliminary registry; coverage, availability and licenses are unverified.
+# El manifiesto conserva la URL y el hash de cada archivo concreto.
 sources:
   ideam_ingei:
     institution: IDEAM
     role: emisiones_y_absorciones_gei
-    expected_period: 1990-2024
-    expected_level: municipio
-    status: pendiente_auditoria
+    period_checked: 1990-2024
+    territorial_codes: 1122
+    access: zip_entregado_por_usuario
+    direct_url: pendiente
+    license: pendiente
   dane_vam:
     institution: DANE
     role: valor_agregado_municipal
-    expected_period: 2011-2024
-    status: pendiente_auditoria
+    period_checked: 2011-2024
+    territorial_codes: 1123
+    prices: corrientes
+    license: pendiente
   dane_population:
     institution: DANE
     role: poblacion_municipal
-    expected_period: 1990-2024
-    status: pendiente_auditoria
+    periods_checked: 1985-1994, 1995-2004, 2005-2017, 2018-2042
+    codes: varian_entre_periodos
+    license: pendiente
   dane_divipola_mgn:
     institution: DANE
-    role: codigos_y_geometrias
-    status: pendiente_auditoria
+    role: codigos_territoriales
+    version: 2025
+    territorial_codes: 1122
+    geometry: no_descargada
+    license: pendiente
