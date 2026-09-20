@@ -48,3 +48,8 @@
 - Los códigos GEI coinciden con los de DIVIPOLA 2025, que incluye áreas no municipalizadas y una isla. DANE VAM y población reciente incluyen un código adicional; la población histórica también omite uno presente en GEI. Se resolverá el universo en Fase 2.
 - El valor agregado DANE está a precios corrientes. El proyecto no calculará desacoplamiento temporal a partir de cambios nominales sin justificar el ajuste de precios.
 - Se documenta la puerta de acceso y cobertura de Fase 1 en `docs/phase1_data_audit.md`. Continúan pendientes licencia, enlace directo IDEAM, homologación territorial y geometrías. La Fase 2 no se ha iniciado.
+
+## 2026-09-20 — Fase 4
+
+- El usuario aprobó la fase descriptiva. El protocolo y el estado para retomar el trabajo están en `docs/phase4_plan.md`.
+- Se generaron primeras tablas y figuras con controles de integridad y conciliación. La fase continúa abierta y aún no hay conclusiones finales.

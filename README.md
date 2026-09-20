@@ -70,7 +70,7 @@ Ya existen `renv.lock`, `_targets.R` y `analysis/00_environment.qmd`: registran 
 
 ## Croquis de las nueve fases (0–8)
 
-Cada fase termina cuando su **puerta de avance** queda comprobada y registrada en `docs/decisions.md`. Los nombres y métodos son un protocolo inicial. **Las Fases 0 a 3 están autorizadas. La Fase 4 no ha comenzado.**
+Cada fase termina cuando su **puerta de avance** queda comprobada y registrada en `docs/decisions.md`. Los nombres y métodos son un protocolo inicial. **Las Fases 0 a 4 están autorizadas. La Fase 4 está en curso.**
 
 | Fase | Trabajo y entregable | Puerta de avance |
 |---|---|---|
@@ -100,4 +100,4 @@ En RStudio, abrir el proyecto y ejecutar `renv::status()` y `targets::tar_make()
 
 ## Estado del proyecto
 
-La Fase 0 estableció el entorno y el repositorio privado. La Fase 1 obtuvo y auditó los archivos núcleo. La Fase 2 comparó códigos, tipos de territorio y denominadores por año. La Fase 3 construyó un panel local de 39.270 filas y lo [concilió con el inventario nacional](docs/phase3_quality.md); el [diccionario](docs/phase3_dictionary.md) explica sus columnas. `R/cleaning/build_core_panel.R` regenera el panel sin modificar originales. No se ha iniciado la Fase 4 ni se han calculado indicadores de desacoplamiento.
+La Fase 0 estableció el entorno y el repositorio privado. La Fase 1 obtuvo y auditó los archivos núcleo. La Fase 2 comparó códigos, tipos de territorio y denominadores por año. La Fase 3 construyó un panel local de 39.270 filas y lo [concilió con el inventario nacional](docs/phase3_quality.md); el [diccionario](docs/phase3_dictionary.md) explica sus columnas. `R/cleaning/build_core_panel.R` regenera el panel sin modificar originales. La Fase 4 está en curso. Su protocolo y avance están en [docs/phase4_plan.md](docs/phase4_plan.md). No se han calculado indicadores de desacoplamiento.
