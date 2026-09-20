@@ -1,6 +1,6 @@
 # Metodología prevista y reglas de reproducibilidad
 
-**Estado:** propuesta previa a los datos. No contiene resultados ni parámetros estimados.
+**Estado:** reglas generales. Las decisiones aplicadas al panel se explican en [Fase 3](phase3_quality.md) y en el [diccionario](phase3_dictionary.md). No contiene modelos ni parámetros estimados.
 
 ## Procedencia de archivos
 

@@ -78,3 +78,11 @@ config/local*
 !data/metadata/territorial_join_coverage.csv
 !data/metadata/territorial_exceptions.csv
 !data/metadata/territorial_special_ideam.csv
+
+!data/metadata/phase3_signs_by_gas.csv
+!data/metadata/phase3_unusual_signs.csv
+!data/metadata/phase3_national_check.csv
+!data/metadata/phase3_sector_check.csv
+!data/metadata/phase3_impact_by_year.csv
+!data/metadata/phase3_jump_review.csv
+!data/metadata/phase3_products.csv

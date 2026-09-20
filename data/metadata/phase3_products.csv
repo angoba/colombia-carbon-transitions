@@ -1,0 +1,3 @@
+path,file_size_bytes,sha256
+data/interim/gei_sector_year.csv,15030840,cc759e3587afdd971a4a3fe65add8caccf1182794f53f459270a964483226a08
+data/processed/core_panel.csv,6914550,047ec66f281d3348ba22f8b11436092b5902744e883bcb1f92971ac87af93a89

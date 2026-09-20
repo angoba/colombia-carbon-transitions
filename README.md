@@ -1,6 +1,6 @@
 # Transiciones de carbono en municipios de Colombia
 
-**Estado:** Fase 2, universo territorial auditado. Hay archivos originales locales y controles de cobertura, todavía sin panel ni resultados empíricos. **Lenguaje principal:** R. **Repositorio:** GitHub privado.
+**Estado:** Fase 3, panel núcleo y controles de calidad. El panel derivado permanece local y aún no hay conclusiones del estudio. **Lenguaje principal:** R. **Repositorio:** GitHub privado.
 
 ## Identidad científica
 
@@ -20,7 +20,7 @@
 
 ## Ventanas de trabajo y alcance
 
-La ventana **1990–2024** está prevista para la historia de emisiones, composición, trayectorias y geografía. La ventana **2011–2024** está prevista para actividad económica municipal, intensidad de carbono, desacoplamiento y modelos explicativos. Ambas son **hipótesis operativas sujetas a verificación** de cobertura, nivel municipal, unidades, revisiones y posibilidad de extracción. Una serie inclusiva 1990–2024 contiene 35 años calendario; la expresión histórica «34 años» no se usará como conteo definitivo sin aclarar la convención de la fuente.
+La ventana **1990–2024** quedó comprobada para las emisiones de 1.122 unidades territoriales y contiene 35 años calendario. La ventana **2011–2024** quedó comprobada para el valor agregado municipal a precios corrientes. La compatibilidad de códigos y denominadores varía por año, como muestra el [control del panel](docs/phase3_quality.md). La expresión histórica «34 años» de la fuente no se usa aquí como conteo de años calendario. La intensidad económica real y el desacoplamiento siguen pendientes de una decisión sobre precios comparables.
 
 Las emisiones **brutas** representan liberaciones antes de descontar absorciones. Las **netas** incorporan absorciones/sumideros y pueden ser cero o negativas. No son intercambiables: se definirá el denominador de cada tasa e indicador, se conservarán unidades y sectores originales, y no se aplicarán logaritmos ordinarios a valores netos no positivos. La conciliación entre sumas sectoriales y totales dependerá de la metodología oficial.
 
@@ -50,7 +50,7 @@ colombia-carbon-transitions/
 │   ├── processed/            # paneles derivados; nunca en Git
 │   └── metadata/             # manifiesto, diccionarios y controles compartibles
 ├── R/
-│   ├── download/             # adquisición futura, sin ejecución en Fase 0
+│   ├── download/             # adquisición y registro de fuentes
 │   ├── cleaning/             # limpieza y homologación de códigos
 │   ├── features/             # indicadores derivados
 │   ├── models/               # modelos longitudinales y tipologías
@@ -70,7 +70,7 @@ Ya existen `renv.lock`, `_targets.R` y `analysis/00_environment.qmd`: registran 
 
 ## Croquis de las nueve fases (0–8)
 
-Cada fase termina cuando su **puerta de avance** queda comprobada y registrada en `docs/decisions.md`. Los nombres y métodos son un protocolo inicial. **Las Fases 0, 1 y 2 están autorizadas. La Fase 3 no ha comenzado.**
+Cada fase termina cuando su **puerta de avance** queda comprobada y registrada en `docs/decisions.md`. Los nombres y métodos son un protocolo inicial. **Las Fases 0 a 3 están autorizadas. La Fase 4 no ha comenzado.**
 
 | Fase | Trabajo y entregable | Puerta de avance |
 |---|---|---|
@@ -90,7 +90,7 @@ La Fase 8 agrupa los pasos posteriores de enriquecimiento, modelamiento, síntes
 
 Las cuatro fuentes núcleo son IDEAM/INGEI (emisiones), DANE VAM (actividad económica), DANE población y DANE DIVIPOLA/MGN (códigos; aún faltan las geometrías). Bosque/uso del suelo, minería ANM y TerriData son candidatos posteriores. El usuario aportó un ZIP de IDEAM cuyos bytes quedaron registrados. El enlace de OneDrive identifica una carpeta y aún no permite reproducir la descarga individual. La [auditoría de Fase 1](docs/phase1_data_audit.md) explica cobertura y discrepancias entre fuentes.
 
-Cada archivo original que se incorpore en Fase 1 tendrá un registro con `source`, `official_url`, `retrieval_date`, `original_filename`, `file_size_bytes`, `sha256`, `coverage`, `geographic_level`, `time_period`, `license` y `notes`. El SHA-256 se calcula sobre los **bytes originales** y se vuelve a comprobar antes del procesamiento. El manifiesto no almacena secretos ni datos restringidos. Los originales se guardan inmutables; cualquier corrección queda en `interim` o se produce por código. Cambios de metodología o reemplazos silenciosos de archivos originan nuevos registros y decisiones.
+Cada archivo original incorporado tiene un registro con `source`, `official_url`, `retrieval_date`, `original_filename`, `file_size_bytes`, `sha256`, `coverage`, `geographic_level`, `time_period`, `license` y `notes`. El SHA-256 se calcula sobre los **bytes originales** y se vuelve a comprobar antes del procesamiento. El manifiesto no almacena secretos ni datos restringidos. Los originales se guardan inmutables; cualquier corrección queda en `interim` o se produce por código. Cambios de metodología o reemplazos silenciosos de archivos originan nuevos registros y decisiones.
 
 Git guardará código, textos, configuración no secreta y metadatos pequeños; no bases crudas ni productos voluminosos. El repositorio en GitHub será **privado**, con acceso del equipo según su decisión. La publicación internacional exige una historia clara: comparación municipal transferible, métodos y código verificables, visualizaciones legibles, definiciones honestas, robustez y materiales suplementarios. Se elegirá revista y licencia del código más adelante, tras revisar alcance, normas editoriales y derechos de los datos; no se promete una cantidad de citas. La visibilidad se buscará con título y resumen claros, identificadores persistentes permitidos, documentación bilingüe del manuscrito cuando corresponda y un paquete reproducible que otros investigadores puedan citar.
 
@@ -100,4 +100,4 @@ En RStudio, abrir el proyecto y ejecutar `renv::status()` y `targets::tar_make()
 
 ## Estado del proyecto
 
-La Fase 0 estableció el entorno y el repositorio privado. La Fase 1 obtuvo y auditó los archivos núcleo. La Fase 2 comparó códigos, tipos de territorio y denominadores por año. El [informe territorial](docs/phase2_territory.md) explica las diferencias históricas y la muestra provisional. Consultar `docs/decisions.md` para decisiones y pendientes. **No se ha iniciado la Fase 3 ni se ha construido el panel.**
+La Fase 0 estableció el entorno y el repositorio privado. La Fase 1 obtuvo y auditó los archivos núcleo. La Fase 2 comparó códigos, tipos de territorio y denominadores por año. La Fase 3 construyó un panel local de 39.270 filas y lo [concilió con el inventario nacional](docs/phase3_quality.md); el [diccionario](docs/phase3_dictionary.md) explica sus columnas. `R/cleaning/build_core_panel.R` regenera el panel sin modificar originales. No se ha iniciado la Fase 4 ni se han calculado indicadores de desacoplamiento.

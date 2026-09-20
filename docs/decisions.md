@@ -31,6 +31,15 @@
 - La Fase 2 deja una tabla maestra, las diferencias por año, excepciones y un control de los dos códigos IDEAM históricos en `data/metadata/`. La capa de polígonos 2025 y un servicio 2018 están localizados; su geometría y topología siguen sin descargar y verificar. El informe completo está en `docs/phase2_territory.md`.
 - La puerta de inventario territorial se cumple. La comparabilidad espacial histórica, las tasas y la construcción del panel quedan como condiciones para la Fase 3, aún no iniciada.
 
+## 2026-09-20 — Fase 3
+
+- El usuario aprobó el panel núcleo y los controles de calidad. Se construyó una fila por código IDEAM y año, 39.270 en total. Los originales permanecen intactos; el panel y el detalle por sector quedan fuera de Git.
+- Se usó la distinción `CO2_ABS` para absorciones con signo. Las sumas nacional y sectorial de los 35 años concilian con el libro IDEAM. Los signos inusuales se registran, no se corrigen sin base metodológica.
+- Se incluyeron población y VAM nominal de DANE por código y año. Los 28 faltantes de población y 564 ceros no generan tasas. Otros 30 pares anteriores a 2020 de Barrancominas quedan sin tasa por la asignación territorial histórica. Se marca Riosucio y Nuevo Belén de Bajirá para revisión de límites.
+- En 1990, 5,69 % de las emisiones brutas corresponden a unidades sin población positiva. Para 2011–2024 el máximo anual de esa proporción es 0,015 %. La exclusión de áreas no municipalizadas y la isla y el peso de tres códigos ligados a cambios de límites están cuantificados por año.
+- El VAM disponible está a precios corrientes. No se creó una serie municipal real ni indicadores de intensidad/desacoplamiento temporal. Elegir y justificar un ajuste de precios queda pendiente.
+- La calidad y el diccionario se explican en `docs/phase3_quality.md` y `docs/phase3_dictionary.md`. Los saltos grandes se señalaron para revisión descriptiva, sin corrección automática. La Fase 4 no se ha iniciado.
+
 ## 2026-09-19 — Fase 1
 
 - El usuario aprobó la Fase 1 y aportó un ZIP ya descargado desde IDEAM. Se movió a `data/raw/ideam/` y se extrajeron solamente la tabla GEI municipal, el consolidado nacional y una infografía. El enlace de la carpeta institucional no permitió una descarga directa sin iniciar sesión.
