@@ -1,6 +1,6 @@
 # Transiciones de carbono en municipios de Colombia
 
-**Estado:** Fase 1, fuentes auditadas. Hay archivos originales locales y controles de cobertura, todavía sin panel ni resultados empíricos. **Lenguaje principal:** R. **Repositorio:** GitHub privado.
+**Estado:** Fase 2, universo territorial auditado. Hay archivos originales locales y controles de cobertura, todavía sin panel ni resultados empíricos. **Lenguaje principal:** R. **Repositorio:** GitHub privado.
 
 ## Identidad científica
 
@@ -70,7 +70,7 @@ Ya existen `renv.lock`, `_targets.R` y `analysis/00_environment.qmd`: registran 
 
 ## Croquis de las nueve fases (0–8)
 
-Cada fase termina cuando su **puerta de avance** queda comprobada y registrada en `docs/decisions.md`. Los nombres y métodos son un protocolo inicial; se revisarán a partir de la auditoría de datos. **Las Fases 0 y 1 están autorizadas. La Fase 2 no ha comenzado.**
+Cada fase termina cuando su **puerta de avance** queda comprobada y registrada en `docs/decisions.md`. Los nombres y métodos son un protocolo inicial. **Las Fases 0, 1 y 2 están autorizadas. La Fase 3 no ha comenzado.**
 
 | Fase | Trabajo y entregable | Puerta de avance |
 |---|---|---|
@@ -100,4 +100,4 @@ En RStudio, abrir el proyecto y ejecutar `renv::status()` y `targets::tar_make()
 
 ## Estado del proyecto
 
-La Fase 0 estableció el entorno y el repositorio privado. La Fase 1 obtuvo y auditó los archivos núcleo, con sus hashes y controles pequeños. Consultar `docs/phase1_data_audit.md` para los hallazgos y `docs/decisions.md` para decisiones y pendientes. **No se ha iniciado la Fase 2 ni se ha construido el panel.**
+La Fase 0 estableció el entorno y el repositorio privado. La Fase 1 obtuvo y auditó los archivos núcleo. La Fase 2 comparó códigos, tipos de territorio y denominadores por año. El [informe territorial](docs/phase2_territory.md) explica las diferencias históricas y la muestra provisional. Consultar `docs/decisions.md` para decisiones y pendientes. **No se ha iniciado la Fase 3 ni se ha construido el panel.**

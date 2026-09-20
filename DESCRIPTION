@@ -8,5 +8,7 @@ Imports:
     yaml,
     digest,
     data.table,
+    readxl,
+    jsonlite,
     knitr,
     rmarkdown

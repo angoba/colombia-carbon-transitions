@@ -21,6 +21,16 @@
 
 **Fecha / fase / decisión / alternativas consideradas / evidencia / consecuencia / responsable.**
 
+## 2026-09-20 — Fase 2
+
+- El usuario aprobó construir la tabla territorial, comparar códigos y medir pérdidas por año. Los originales permanecen intactos.
+- Se conservan los 1.122 códigos IDEAM como universo de referencia de emisiones. DIVIPOLA 2025 los clasifica en 1.103 municipios, 18 áreas no municipalizadas y una isla. Su clasificación de 2025 no se extrapola automáticamente a 1990.
+- Mapiripana (`94663`) está en los libros DANE, pero no en IDEAM ni en la consulta DIVIPOLA 2025. DANE documentó su relación con la creación de Barrancominas. No se suman las dos claves sin comprobar las reglas temporales de cada serie.
+- Nuevo Belén de Bajirá (`27493`) se incorporó a DIVIPOLA en 2024. IDEAM registra valores anteriores; población y valor agregado DANE no ofrecen denominadores positivos anteriores a 2024 para ese código. Barrancominas también aparece retrospectivamente en IDEAM. No se reasignan emisiones ni se interpretan esos registros como límites constantes hasta verificar el método específico.
+- Se encontraron 564 pares código–año con población cero en la ventana 1990–2024 y 13 años de valor agregado cero para `27493` entre 2011 y 2023. Ningún cero será usado como denominador.
+- La Fase 2 deja una tabla maestra, las diferencias por año, excepciones y un control de los dos códigos IDEAM históricos en `data/metadata/`. La capa de polígonos 2025 y un servicio 2018 están localizados; su geometría y topología siguen sin descargar y verificar. El informe completo está en `docs/phase2_territory.md`.
+- La puerta de inventario territorial se cumple. La comparabilidad espacial histórica, las tasas y la construcción del panel quedan como condiciones para la Fase 3, aún no iniciada.
+
 ## 2026-09-19 — Fase 1
 
 - El usuario aprobó la Fase 1 y aportó un ZIP ya descargado desde IDEAM. Se movió a `data/raw/ideam/` y se extrajeron solamente la tabla GEI municipal, el consolidado nacional y una infografía. El enlace de la carpeta institucional no permitió una descarga directa sin iniciar sesión.

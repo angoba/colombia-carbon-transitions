@@ -73,3 +73,8 @@ config/local*
 !data/metadata/ideam_early_years.csv
 
 !data/metadata/ideam_totals_check.csv
+
+!data/metadata/territorial_master.csv
+!data/metadata/territorial_join_coverage.csv
+!data/metadata/territorial_exceptions.csv
+!data/metadata/territorial_special_ideam.csv
