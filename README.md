@@ -1,10 +1,8 @@
 # Transiciones de carbono en municipios de Colombia
 
-**Estado:** Fase 3, panel núcleo y controles de calidad. El panel derivado permanece local y aún no hay conclusiones del estudio. **Lenguaje principal:** R. **Repositorio:** GitHub privado.
-
 ## Identidad científica
 
-**Título provisional:** *Trayectorias subnacionales hacia un desarrollo bajo en carbono: un marco espacio-temporal reproducible aplicado a los municipios de Colombia*. Título inglés provisional: *Subnational pathways to low-carbon development: a reproducible spatiotemporal framework applied to Colombian municipalities*.
+**Título provisional:** *Trayectorias subnacionales hacia un desarrollo bajo en carbono: un marco espacio-temporal reproducible aplicado a los municipios de Colombia*. .
 
 **Pregunta central:** ¿Por qué algunos municipios colombianos avanzan hacia un desarrollo de menor intensidad de carbono mientras otros permanecen en trayectorias intensivas en emisiones? La contribución buscada es un marco reproducible para identificar, explicar y mapear arquetipos subnacionales de transición, con Colombia como caso de estudio. Los resultados serán descriptivos y asociativos; no se atribuirán efectos causales.
 
@@ -86,18 +84,8 @@ Cada fase termina cuando su **puerta de avance** queda comprobada y registrada e
 
 La Fase 8 agrupa los pasos posteriores de enriquecimiento, modelamiento, síntesis, robustez y escritura del borrador maestro. No implica que se haya elegido ya un modelo. Se comparará un modelo con efectos municipales y anuales con una opción espacial o jerárquica si la estructura observada lo justifica. Se revisarán resultados con emisiones brutas/netas, distintas ventanas de desacoplamiento, definiciones espaciales, pandemia y municipios extremos. Se mantendrán fuera del núcleo variables accesorias que no aporten a la pregunta.
 
-## Datos y reproducibilidad
-
-Las cuatro fuentes núcleo son IDEAM/INGEI (emisiones), DANE VAM (actividad económica), DANE población y DANE DIVIPOLA/MGN (códigos; aún faltan las geometrías). Bosque/uso del suelo, minería ANM y TerriData son candidatos posteriores. El usuario aportó un ZIP de IDEAM cuyos bytes quedaron registrados. El enlace de OneDrive identifica una carpeta y aún no permite reproducir la descarga individual. La [auditoría de Fase 1](docs/phase1_data_audit.md) explica cobertura y discrepancias entre fuentes.
-
-Cada archivo original incorporado tiene un registro con `source`, `official_url`, `retrieval_date`, `original_filename`, `file_size_bytes`, `sha256`, `coverage`, `geographic_level`, `time_period`, `license` y `notes`. El SHA-256 se calcula sobre los **bytes originales** y se vuelve a comprobar antes del procesamiento. El manifiesto no almacena secretos ni datos restringidos. Los originales se guardan inmutables; cualquier corrección queda en `interim` o se produce por código. Cambios de metodología o reemplazos silenciosos de archivos originan nuevos registros y decisiones.
-
-Git guardará código, textos, configuración no secreta y metadatos pequeños; no bases crudas ni productos voluminosos. El repositorio en GitHub será **privado**, con acceso del equipo según su decisión. La publicación internacional exige una historia clara: comparación municipal transferible, métodos y código verificables, visualizaciones legibles, definiciones honestas, robustez y materiales suplementarios. Se elegirá revista y licencia del código más adelante, tras revisar alcance, normas editoriales y derechos de los datos; no se promete una cantidad de citas. La visibilidad se buscará con título y resumen claros, identificadores persistentes permitidos, documentación bilingüe del manuscrito cuando corresponda y un paquete reproducible que otros investigadores puedan citar.
 
 ## Cómo comprobar el entorno
 
 En RStudio, abrir el proyecto y ejecutar `renv::status()` y `targets::tar_make()` desde su raíz. El flujo inicial solo lee `config/parameters.yml` y valida las ventanas; sus salidas permanecen fuera de Git. Para el informe técnico, ejecutar `quarto render analysis/00_environment.qmd` desde una terminal que encuentre R y Quarto, o usar **Render** en RStudio. En esta máquina, ambos ejecutables funcionan por sus rutas instaladas aunque no estén en el `PATH` general.
 
-## Estado del proyecto
-
-La Fase 0 estableció el entorno y el repositorio privado. La Fase 1 obtuvo y auditó los archivos núcleo. La Fase 2 comparó códigos, tipos de territorio y denominadores por año. La Fase 3 construyó un panel local de 39.270 filas y lo [concilió con el inventario nacional](docs/phase3_quality.md); el [diccionario](docs/phase3_dictionary.md) explica sus columnas. `R/cleaning/build_core_panel.R` regenera el panel sin modificar originales. La Fase 4 está en curso. Su protocolo y avance están en [docs/phase4_plan.md](docs/phase4_plan.md). No se han calculado indicadores de desacoplamiento.
